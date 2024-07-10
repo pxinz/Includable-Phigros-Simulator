@@ -1,0 +1,77 @@
+<html lang="zh_cn">
+<head>
+    <meta charset="UTF-8">
+    <title>PhigrosPlayer</title>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript">
+        // Canvas
+        let canvas;
+        let ctx;
+        // - Chart Info -
+        // Chart File
+        let chart_json = "~CHART~";
+        let chart;
+        // Illustration
+        let bg_original;
+        let bg_darkness = "~BGDARKNESS~";
+        let bg;
+        // Items
+        let song_name = "~SONGNAME~";
+        let difficulty = "~LEVEL~";
+        // - Resources -
+        let notes_img = [
+            ["./res/notes/Tap.png", "./res/notes/Tap_HL.png"],
+            ["./res/notes/Drag.png", "./res/notes/Drag_HL.png"],
+            ["./res/notes/Hold_Head.png", "./res/notes/Hold_Head_HL.png"],
+            ["./res/notes/Flick.png", "./res/notes/Flick_HL.png"]
+        ];
+        let notes_size = [
+            [[0, 0], [0, 0]],
+            [[0, 0], [0, 0]],
+            [[0, 0], [0, 0]],
+            [[0, 0], [0, 0]]
+        ];
+        let note_size_multiper = "~NOTESIZEMUL~";
+        // - Play -
+        let start_time;
+        let X;
+        let Y;
+        let fc = true;
+        let ap = true;
+        let acc = 0;
+        let combo = 0;
+        let score = 0;
+        let running = true;
+        let rendering = false;
+
+        window.onload = async function () {
+            canvas = document.getElementById("player");
+            ctx = canvas.getContext("2d");
+            start_time = Date.now();
+            const font = new FontFace("displayFont", "url(~FONTLINK~)");
+            font.load()
+                .then(() => {
+                    document.fonts.add(font)
+                })
+                .then(() => {
+
+                })
+            bg_original = new Image();
+            bg_original.loading = "eager";
+            bg_original.onload = () => {
+                main();
+            }
+            bg_original.src = "~IMG~";
+        }
+    </script>
+    <style>
+        #player {
+            background-color: aqua;
+            touch-action: none;
+        }
+    </style>
+</head>
+<body>
+<canvas id="player" width="~WIDTH~" height="~HEIGHT~"></canvas>
+</body>
+</html>
